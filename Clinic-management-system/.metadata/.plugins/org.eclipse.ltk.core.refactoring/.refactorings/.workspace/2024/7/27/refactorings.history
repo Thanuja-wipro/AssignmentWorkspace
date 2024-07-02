@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;02_feign_with_Circuit-Breaker&apos;" deleteContents="false" description="Delete resource &apos;02_feign_with_Circuit-Breaker&apos;" element1="/02_feign_with_Circuit-Breaker" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1719900308968"/>
+</session>

@@ -1,0 +1,13 @@
+package com.example.demo.cts;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient(name = "patient-service")
+public interface PatientFeignClient {
+@GetMapping("/patients/doctor/{doctorId}")
+    List<Patient> getPatientsByDoctorId(@PathVariable("doctorId") Long doctorId);
+}

@@ -1,0 +1,31 @@
+package com.example.demo.cts;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.springframework.stereotype.Component;
+
+import com.example.demo.entity.Doctor;
+@Component
+public class OrderFeignClientFallback implements DoctorFeignClient {
+
+	@Override
+    public List<Doctor> productResponse() {
+        return Stream.of(
+                new Doctor(119,"order1"),
+                new Doctor(345, "Headset"),
+                new Doctor(475, "Sound bar"),
+                new Doctor(574, "Puma Shoes"),
+                new Doctor(678, "Vegetable chopper"),
+                new Doctor(532, "Oven Gloves")
+        ).collect(Collectors.toList());
+    }
+
+	@Override
+	public String getException() {
+		
+		return "Fixed Response";
+	}
+
+}
