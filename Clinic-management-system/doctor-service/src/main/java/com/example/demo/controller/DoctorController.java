@@ -16,20 +16,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.cts.PatientFeignClient;
 import com.example.demo.entity.Doctor;
+import com.example.demo.entity.Patient;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.service.IDoctorService;
 
 @RestController
-@RequestMapping("/api/doctor") // http://localhost:9191/api/hello
+@RequestMapping("/api/doctor") // http://localhost:6100/api/doctor
 public class DoctorController {
 
 	@Autowired
 	private IDoctorService doctorService;
 	
-//	@Autowired
-//	DoctorFeignClient dFeignClient;
+	@Autowired
+	PatientFeignClient patientClient;
 
+	// http://localhost:6100/api/doctor/hello
 	@GetMapping("/hello")
 	String hello() {
 		return "Hello World, Spring Boot.... Welcome to You!";
@@ -37,11 +40,12 @@ public class DoctorController {
 	
 
 	//@GetMapping(path = "/doctors", produces = {MediaType.APPLICATION_XML_VALUE})
-	@GetMapping("/doctors") // http://localhost:9191/api/doctors
+	@GetMapping("/doctors") // http://localhost:6100/api/doctor/doctors
 	 List<Doctor> getAllDoctors() {
 		return doctorService.getDoctorsFromDatabase();
 	}
-
+	
+	//http://localhost:6100/api/doctor/doctors/{id}
 	@GetMapping("/doctors/{id}")
 	public Optional<Doctor> getDoctorById(@PathVariable int id) throws ResourceNotFoundException {
 		Optional<Doctor> order = doctorService.getDoctorById(id);
@@ -64,16 +68,21 @@ public class DoctorController {
 			@Validated @RequestBody Doctor newDoctor) {
 		return doctorService.updateDoctor(doctorId, newDoctor);
 	}
+	
+	//feign call
+		//http://localhost:6100/api/doctor/1/patient
+		@GetMapping("/{doctorId}/patient")
+		public List<Patient> getPatientsByDoctor(@PathVariable long doctorId) {
+	        return patientClient.getPatientByDoctorId(doctorId);
+		}
 
-//	@GetMapping("/doctors/req")
-//	public Optional<Doctor> findDoctorByPatientIdUsingRequestParam(@RequestParam int id) {
-//		return doctorService.getDoctorById(id);
-//	}
-//	@GetMapping("/alldoctor")
-//	public  ResponseEntity<List<Doctor>> Products() {
-//	 return ResponseEntity.ok().body(dFeignClient.doctorResponse());
-//	}	
-//	
+		//http://localhost:6100/api/doctor/doctors/req?id=1
+		@GetMapping("/doctors/req")
+		Optional<Doctor> findByDoctorIdUsingRequest(@RequestParam int id) {
+			return doctorService.getDoctorById(id);
+		}
+		
+	
 
 
 }
