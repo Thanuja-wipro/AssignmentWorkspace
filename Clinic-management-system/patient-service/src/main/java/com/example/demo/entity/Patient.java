@@ -30,7 +30,17 @@ public class Patient {
 	@Column(name = "pAddress")
 	private String pAddress;
 	
+	private long doc_id;
 	
+
+	public long getDoc_id() {
+		return doc_id;
+	}
+
+	public void setDoc_id(long doc_id) {
+		this.doc_id = doc_id;
+	}
+
 	public Patient() {
 		super();
 	}
@@ -77,21 +87,23 @@ public class Patient {
 		this.age = age;
 	}
 
-	public String getPPhone() {
+	public String getpPhone() {
 		return pPhone;
 	}
 
-	public void setPPhone(String pPhone) {
+	public void setpPhone(String pPhone) {
 		this.pPhone = pPhone;
 	}
 
-	public String getPAddress() {
+	public String getpAddress() {
 		return pAddress;
 	}
 
-	public void setPAddress(String pAddress) {
+	public void setpAddress(String pAddress) {
 		this.pAddress = pAddress;
 	}
+
+
 
 	
 }

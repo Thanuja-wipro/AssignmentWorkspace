@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.entity.Patient;
 
@@ -18,4 +19,6 @@ public interface IPatientService {
 	Patient createPatient(Patient newPatient);
 
 	ResponseEntity<Patient> updatePatient(Integer patientId, Patient newPatient);
+//	public List<Patient> getPatientByDoctor(@PathVariable int doctorId);
 }
+

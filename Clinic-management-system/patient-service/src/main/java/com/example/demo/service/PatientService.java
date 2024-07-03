@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.entity.Patient;
 import com.example.demo.repo.PatientRepository;
@@ -51,4 +52,9 @@ public class PatientService implements IPatientService {
 		});
 		return ResponseEntity.of(existingPatient);
 	}
+//	@Override
+//	public List<Patient> getPatientByDoctor(@PathVariable int doctorId){
+//		return patientRepo.findByDoctorID(doctorId);
+//	}
 }
+
