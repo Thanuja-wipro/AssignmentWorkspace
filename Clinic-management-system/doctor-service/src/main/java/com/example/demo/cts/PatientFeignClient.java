@@ -15,8 +15,7 @@ import feign.Headers;
 @FeignClient(name = "patient-service", url = "${DOCTOR_SERVICE:http://localhost:9196}")
 //@FeignClient(name = "patient-service")
 public interface PatientFeignClient {
-	@GetMapping("/patients/doctor/{doctorId}")
-	List<Patient> getPatientsByDoctorId(@PathVariable("doctorId") Long doctorId);
-		
-
+	@GetMapping("/api/patient/doctor/{doctorId}")
+	List<Patient> getPatientByDoctorId(@PathVariable("doctorId") long doctorId);
 }
+

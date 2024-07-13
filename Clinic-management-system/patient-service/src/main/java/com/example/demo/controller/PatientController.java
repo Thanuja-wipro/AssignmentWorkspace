@@ -18,18 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Patient;
 import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.repo.PatientRepository;
 import com.example.demo.service.IPatientService;
 
 @RestController
-@RequestMapping("/api/patient") // http://localhost:9191/api/hello
+@RequestMapping("/api/patient") // http://localhost:6200/api/patient
 public class PatientController {
 
 	@Autowired
-	private IPatientService doctorService;
+	private IPatientService patientService;
 	
-//	@Autowired
-//	DoctorFeignClient dFeignClient;
-
+	@Autowired
+	private PatientRepository patientRepo;
+	
+	// http://localhost:6200/api/patient/hello
 	@GetMapping("/hello")
 	String hello() {
 		return "Hello World, Spring Boot.... Welcome to You!";
@@ -37,38 +39,48 @@ public class PatientController {
 	
 
 	//@GetMapping(path = "/orders", produces = {MediaType.APPLICATION_XML_VALUE})
-	@GetMapping("/patients") // http://localhost:9191/api/orders
-	 List<Patient> getAllDoctors() {
-		return doctorService.getPatientsFromDatabase();
+	@GetMapping("/patients") // http://localhost:6200/api/patient/patients
+	 List<Patient> getAllPatients() {
+		return patientService.getPatientsFromDatabase();
 	}
 
+	// http://localhost:6200/api/patient/patients/{id}
 	@GetMapping("/patients/{id}")
 	public Optional<Patient> getPatientById(@PathVariable int id) throws ResourceNotFoundException {
-		Optional<Patient> patient = doctorService.getPatientById(id);
+		Optional<Patient> patient = patientService.getPatientById(id);
 		patient.orElseThrow(() -> new ResourceNotFoundException("Patient not found for this id :: " + id));
 		return patient;
 	}
 
 	@DeleteMapping("/patients/{id}")
-	public void deleteDoctorById(@PathVariable int id) {
-		doctorService.deletePatientById(id);
+	public void deletePatientById(@PathVariable int id) {
+		patientService.deletePatientById(id);
 	}
 
 	@PostMapping("/patients")
-	public Patient createDoctor(@Validated @RequestBody Patient newOrder) {
-		return doctorService.createPatient(newOrder);
+	public Patient createPatient(@Validated @RequestBody Patient newPatient) {
+		return patientService.createPatient(newPatient);
 	}
 
 	@PutMapping("/patients/{id}")
-	public ResponseEntity<Patient> updateDoctor(@PathVariable(value = "id") Integer orderId,
-			@Validated @RequestBody Patient newOrder) {
-		return doctorService.updatePatient(orderId, newOrder);
+	public ResponseEntity<Patient> updatePatient(@PathVariable(value = "id") Integer patientId,
+			@Validated @RequestBody Patient newPatient) {
+		return patientService.updatePatient(patientId, newPatient);
 	}
-
-	@GetMapping("/patients/req")
-	public Optional<Patient> findDoctorByOrderIdUsingRequestParam(@RequestParam int id) {
-		return doctorService.getPatientById(id);
-	}
+	
+	//	for Feign
+	// http://localhost:6200/api/patient/patient/doctor/1
+		@GetMapping("/patient/doctor/{doctorId}")
+		public List<Patient> getPatientByDoctor(@PathVariable int doctorId) {
+	        return patientRepo.getByDoctorID(doctorId);
+		}
+		
+		// http://localhost:6200/api/patient/patient/req?id=1
+		@GetMapping("/patient/req")
+		Optional<Patient> findByPatientIdUsingRequest(@RequestParam int id) {
+			
+			return patientService.getPatientById(id);
+		}
 	
 
 }
