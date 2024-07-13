@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Example of CSS3 Transition</title>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .con {
+            padding: 5px;
+            background-color: lightpink;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+
+        .con1 {
+            background-color: aquamarine;
+            padding: 5px;
+        }
+
+        /* h2{
+        border-style: solid;
+        border-width: 1px;
+        border-color: grey;
+        padding: 5px;
+    } */
+        img {
+            height: 70px;
+            width: 70px;
+        }
+
+        .logo {
+            border-radius: 65px;
+            height: 40px;
+            width: 40px;
+            margin-top: 10px;
+
+        }
+
+        .prod-image {
+            height: 30%;
+            width: 15%;  
+            margin: 10px;
+            padding: 10px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        a {
+            padding: 15px;
+            padding-top: 25px;
+            font-size: 23px;
+        }
+
+        .product-card {
+            display: flex;
+            justify-content: flex-start;
+            border-style: solid;
+            border-width: 1px;
+            border-color: grey;
+            padding: 5px;
+            margin: 5px;
+            margin-bottom: 10px;
+        }
+
+        .categories {
+            border-style: solid;
+            border-width: 1px;
+            border-color: grey;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-items {
+            align-content: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            width: 150px;
+            align-content: center;
+            justify-content: space-evenly;
+        }
+
+        button {
+            color: #000;
+            border-style: solid;
+            border-width: 1px;
+            border-color: grey;
+            padding: 5px;
+            border: black;
+            /* padding: 10px 20px; */
+            font: 18px sans-serif;
+            background: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="con">
+        <nav>
+            <div class="nav-logo">
+                <img src="https://images.unsplash.com/photo-1649734926695-1b1664e98842?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    class="logo" alt="image" />
+                <h3>ShopEasy</h3>
+            </div>
+            <div class="nav-items">
+                <a>Home</a>
+                <a>Products</a>
+                <a>Cart</a>
+                <a>Contact</a>
+            </div>
+        </nav>
+    </div>
+    <div class="con1">
+        <h2>Our Products</h2>
+
+        <div class="product-card">
+            
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="image" class="prod-image" />
+        
+            <div>
+                <h3>HeadSet</h3>
+                <p>This is a great product that you will love.</p>
+                <p>Price: <strong>$10.00</strong></p>
+                <p>Quantity: </p>
+                <div style="display: flex;">
+                    <input type="text" value="1" style="margin-right: 10px;">
+                    <form action="Cart.html">
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1999&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="image" class="prod-image" />
+            <div>
+                <h3>SmartWatch</h3>
+                <p>This is another great product that you will enjoy.</p>
+                <p>Price: <strong>$20.00</strong></p>
+                <p>Quantity: </p>
+                <div style="display: flex;">
+                    <input type="text" value="1" style="margin-right: 10px;">
+                    <form action="Cart.html">
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card" style="display: flex; flex-direction: column;">
+            <h3>Products List</h3>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>001</td>
+                        <td>HeadSet</td>
+                        <td>$10.00</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>002</td>
+                        <td>SmartWatch</td>
+                        <td>$20.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        
+
+        <div class="categories">
+            <h2>Categories</h2>
+            <div>
+                <ul>
+                    <li><a href="http://electronics.com/">Electronics</a></li>
+                    <li><a href="https://trends.ajio.com/">Clothing</a></li>
+                    <li><a href="https://www.homesandgardens.com/">Home & Garden</a></li>
+                    <li><a href="https://sports.com/en/index/">Sports</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="categories">
+            <h2>Contact Us</h2>
+            <form action="#">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+
+                <label for="message">Message:</label>
+                <textarea id="message" rows="4"></textarea><br><br>
+
+                <input type="submit" value="Send Message">
+            </form>
+        </div>
+
+        <div class="categories bottom">
+            <p>@ 2024 ShopEasy. All rights reserved.</p>
+        </div>
+
+        
+    </div> 
+
+    
+    
+ 
+</body>
+
+</html>
